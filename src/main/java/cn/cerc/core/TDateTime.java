@@ -108,7 +108,7 @@ public class TDateTime implements Serializable, Comparable<TDateTime>, Cloneable
             tdt.setData(sdf.parse(val));
             return tdt;
         } catch (ParseException e) {
-            ClassResource res = new ClassResource("summer-core", TDateTime.class);
+            ClassResource res = new ClassResource(TDateTime.class, "summer-core");
             throw new RuntimeException(String.format(res.getString(1, "不是 %s 标准年月格式 ：yyyyMM"), val));
         }
     }
@@ -194,7 +194,7 @@ public class TDateTime implements Serializable, Comparable<TDateTime>, Cloneable
         try {
             sdf = new SimpleDateFormat(map.get(fmt));
         } catch (IllegalArgumentException e) {
-            ClassResource res = new ClassResource("summer-core", TDateTime.class);
+            ClassResource res = new ClassResource(TDateTime.class, "summer-core");
             throw new RuntimeException(res.getString(2, "日期格式不正确"));
         }
         return sdf.format(value.getData());
@@ -203,7 +203,7 @@ public class TDateTime implements Serializable, Comparable<TDateTime>, Cloneable
     public static TDateTime StrToDate(String val) {
         String fmt = TDateTime.getFormat(val);
         if (fmt == null) {
-            ClassResource res = new ClassResource("summer-core", TDateTime.class);
+            ClassResource res = new ClassResource(TDateTime.class, "summer-core");
             throw new RuntimeException(String.format(res.getString(3, "时间格式不正确: value=%s"), val));
         }
         return new TDateTime(fmt, val);
@@ -380,7 +380,7 @@ public class TDateTime implements Serializable, Comparable<TDateTime>, Cloneable
                 count = count + flag;
             }
         } catch (ParseException e) {
-            ClassResource res = new ClassResource("summer-core", TDateTime.class);
+            ClassResource res = new ClassResource(TDateTime.class, "summer-core");
             throw new RuntimeException(String.format(res.getString(4, "日期转换格式错误 ：%s") , e.getMessage()));
         }
         return count;

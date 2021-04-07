@@ -6,5 +6,6 @@ public interface IConnection {
     // 返回会话
     Object getClient();
 
+    @Deprecated
     void setConfig(IConfig config);
 }

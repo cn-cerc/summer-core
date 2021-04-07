@@ -1,14 +1,15 @@
 package cn.cerc.core;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-@Slf4j
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Lunar {
+	private static final Logger log = LoggerFactory.getLogger(Lunar.class);
 
     final static String[] chineseNumber = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
     final static long[] lunarInfo = new long[]{0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0,

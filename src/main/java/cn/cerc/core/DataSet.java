@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class DataSet implements IRecord, Serializable, Iterable<Record> {
     private static final long serialVersionUID = 873159747066855363L;
-    private static ClassResource res = new ClassResource("summer-core", DataSet.class);
+    private static ClassResource res = new ClassResource(DataSet.class, "summer-core");
     private int recNo = 0;
     private int fetchNo = -1;
     private FieldDefs fieldDefs = new FieldDefs();
@@ -32,7 +32,7 @@ public class DataSet implements IRecord, Serializable, Iterable<Record> {
     private DataSetEvent onAfterAppend;
     private DataSetEvent onBeforePost;
     private SearchDataSet search;
-
+    private boolean readonly;
     private Record head = null;
     private FieldDefs head_defs = null;
 
@@ -625,5 +625,13 @@ public class DataSet implements IRecord, Serializable, Iterable<Record> {
 
     public void setOnBeforeAppend(DataSetBeforeAppendEvent onBeforeAppend) {
         this.onBeforeAppend = onBeforeAppend;
+    }
+
+    public boolean isReadonly() {
+        return readonly;
+    }
+
+    public void setReadonly(boolean readonly) {
+        this.readonly = readonly;
     }
 }

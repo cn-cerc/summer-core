@@ -1,11 +1,5 @@
 package cn.cerc.core;
 
-import lombok.extern.slf4j.Slf4j;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Transient;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,8 +22,16 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-@Slf4j
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Transient;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Utils {
+	private static final Logger log = LoggerFactory.getLogger(Utils.class);
 
     /**
      * 不允许创建对象，只能作为工具类使用
@@ -135,7 +137,7 @@ public class Utils {
     // 兼容 delphi 代码
     public static int round(double d) {
         if (LanguageResource.isLanguageTW()) {
-            return new BigDecimal(d).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
+            return new BigDecimal(d).setScale(0, RoundingMode.HALF_UP).intValue();
         }
         return (int) Math.round(d);
     }
@@ -536,7 +538,7 @@ public class Utils {
     public static String confused(String mobile, int fromLength, int endLength) {
         int length = mobile.length();
         if (length < (fromLength + endLength)) {
-            ClassResource res = new ClassResource("summer-core", Utils.class);
+            ClassResource res = new ClassResource(Utils.class, "summer-core");
             throw new RuntimeException(res.getString(1, "字符串长度不符合要求"));
         }
         int len = mobile.length() - fromLength - endLength;

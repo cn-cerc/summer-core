@@ -11,14 +11,13 @@ public class ClassResource {
     private String resourceFile;
     private Object owner;
 
-    public ClassResource(String resourceFile, Class<?> clazz) {
-        this.classPath = clazz.getName();
-        this.resourceFile = resourceFile;
-    }
-
     public ClassResource(Object owner, String resourceFile) {
-        this.owner = owner;
-        this.classPath = owner.getClass().getName();
+        if (owner instanceof Class) {
+            this.classPath = ((Class<?>) owner).getName();
+        } else {
+            this.classPath = owner.getClass().getName();
+            this.owner = owner;
+        }
         this.resourceFile = resourceFile;
     }
 

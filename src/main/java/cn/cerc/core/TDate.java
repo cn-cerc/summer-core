@@ -10,7 +10,7 @@ import java.util.Date;
  * @author 张弓
  */
 public class TDate extends TDateTime {
-    private static ClassResource res = new ClassResource("summer-core", TDate.class);
+    private static ClassResource res = new ClassResource(TDate.class, "summer-core");
     private static final long serialVersionUID = 1L;
 
     public TDate(Date date) {
